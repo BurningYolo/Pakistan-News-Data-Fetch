@@ -4,7 +4,7 @@ const {geoNewsHeadingFetch} = require('./geo_news_data/geo_news_heading_link_fet
 
 function start_fetching_ary()
 {
-    geoNewsHeadingFetch(); 
+    aryNewsHeadingFetch(); 
 }
 
 start_fetching_ary();
