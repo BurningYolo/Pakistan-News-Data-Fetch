@@ -42,6 +42,7 @@ async function geoNewsArticleFetch(href) {
       console.error('Failed to retrieve the webpage.', error.message);
     }
   }
+  require('../bol_news_data/bol_news_heading_link_fetch').bolNewsHeadingFetch(); 
 }
 
 module.exports = { geoNewsArticleFetch , geo_article_arr };

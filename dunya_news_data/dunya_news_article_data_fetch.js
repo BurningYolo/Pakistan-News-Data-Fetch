@@ -32,6 +32,7 @@ async function duynaNewsArticleFetch(href) {
       console.error('Failed to retrieve the webpage.', error.message);
     }
   }
+  require('../hum_news_data/hum_news_heading_link_fetch').humNewsHeadingFetch(); 
 }
 
 module.exports = { duynaNewsArticleFetch, dunya_article_arr };

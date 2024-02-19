@@ -1,8 +1,8 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
-var ary_article_arr= []; // ARY ARTICLE STORER  
+var hum_article_arr= []; // hum ARTICLE STORER  
 
-async function aryNewsArticleFetch(href) {
+async function humNewsArticleFetch(href) {
 
 
 
@@ -17,33 +17,36 @@ async function aryNewsArticleFetch(href) {
       if (response.status === 200) {
         const $ = cheerio.load(response.data);
 
-        // Select only <p> tags that contain text
+        
 
 
-        const paragraphs = $('.tdb-block-inner p').filter(function () {
+        const paragraphs = $('.wrap__article-detail-content p').filter(function () {
           return $(this).text().trim().length > 0;
         });
        
-        // Extract and print the text content of selected <p> tags
+        
 
 
         paragraphs.each((index, element) => {
           const paragraphText = $(element).text();
-          ary_article_arr[i] += paragraphText; 
+          hum_article_arr[i] += paragraphText; 
         });
 
-        console.log(ary_article_arr); 
+        console.log(hum_article_arr); 
+        await new Promise(resolve => setTimeout(resolve, 1000));
       } else {
         console.log('Failed to retrieve the webpage. Status code:', response.status);
       }
 
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      
     } catch (error) {
       console.error('Failed to retrieve the webpage.', error.message);
     }
-  }
-  require('../geo_news_data/geo_news_heading_link_fetch').geoNewsHeadingFetch(); 
 
+  }
+  require('../main').gather_articles_heading(); 
+  
+  
 }
 
-module.exports = { aryNewsArticleFetch , ary_article_arr };
+module.exports = { humNewsArticleFetch , hum_article_arr };

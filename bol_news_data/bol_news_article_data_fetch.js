@@ -32,6 +32,7 @@ async function bolNewsArticleFetch(href) {
       console.error('Failed to retrieve the webpage.', error.message);
     }
   }
+  require('../dunya_news_data/dunya_news_heading_link_fetch').dunyaNewsHeadingFetch(); 
 }
 
 module.exports = { bolNewsArticleFetch, bol_article_arr };
