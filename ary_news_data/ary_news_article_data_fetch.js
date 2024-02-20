@@ -5,7 +5,7 @@ var ary_article_arr = []; // ARY ARTICLE STORER
 async function aryNewsArticleFetch(href) {
   try {
     for (var i = 0; i < 10; i++) {    
-      ary_article_arr[i] = " "; // Initialize as an empty string for each article
+      ary_article_arr[i] = ''; // Initialize as an empty string for each article
       
       const url = href[i];
       console.log(url);
@@ -23,7 +23,7 @@ async function aryNewsArticleFetch(href) {
           ary_article_arr[i] += paragraphText;
         });
 
-        console.log(ary_article_arr);
+        console.log(ary_article_arr[i]);
       } else {
         console.log('Failed to retrieve the webpage. Status code:', response.status);
       }

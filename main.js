@@ -56,7 +56,7 @@ function gather_articles_heading()
 function gather_articles()
 {
     // Assuming ary_title_arr, geo_title_arr, dunya_title_arr, bol_title_arr, hum_title_arr are arrays
-   all_articles = ary_title_arr.concat(ary_article_arr , geo_article_arr , hum_article_arr , bol_article_arr , dunya_article_arr);
+   all_articles = ary_article_arr.concat(ary_article_arr , geo_article_arr , hum_article_arr , bol_article_arr , dunya_article_arr);
 
   const filePath = 'ARTICLE.txt';
 
@@ -78,7 +78,7 @@ function gather_articles()
 start_fetching_ary(); // ary --> geo --> bol --> dunya --> hum 
 
 
-module.exports = { gather_articles_heading };
+module.exports = { gather_articles_heading , gather_articles };
 
  
 
