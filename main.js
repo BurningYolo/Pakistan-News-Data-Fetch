@@ -19,8 +19,8 @@ const {humNewsArticleFetch , hum_article_arr} = require('./hum_news_data/hum_new
 
 
 
-var all_titles=''; 
-var all_articles=''; 
+var all_titles=[]; 
+var all_articles=[]; 
 
 
 function start_fetching_ary()
