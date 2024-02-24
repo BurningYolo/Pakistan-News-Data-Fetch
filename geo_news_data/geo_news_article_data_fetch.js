@@ -8,7 +8,8 @@ async function geoNewsArticleFetch(href) {
 
 
   for (var i = 0; i < 10; i++)  // IF GET VALUE OF ALL ARTICLES NEED TO CHANGE 10 to Length of href arr .... gotten from param. 
-  {    
+  {
+    geo_article_arr[i] = ' '    
     try {
       const url = href[i];
       console.log(url);
@@ -42,7 +43,7 @@ async function geoNewsArticleFetch(href) {
       console.error('Failed to retrieve the webpage.', error.message);
     }
   }
-  require('../bol_news_data/bol_news_heading_link_fetch').bolNewsHeadingFetch(); 
+    require('../bol_news_data/bol_news_heading_link_fetch').bolNewsHeadingFetch(); 
 }
 
 module.exports = { geoNewsArticleFetch , geo_article_arr };

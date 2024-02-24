@@ -14,7 +14,7 @@ async function bolNewsArticleFetch(href) {
         const $ = cheerio.load(response.data);
 
         // Find all paragraphs inside the article tag and concatenate their text content
-        const articleText = $('.typo-txt p').map((index, element) => $(element).text()).get().join('\n');
+        const articleText = $('.typo-txt p').map((index, element) => $(element).text()).get().join();
 
         console.log(`Article ${i + 1} Text:\n${articleText}`);
 
@@ -33,6 +33,7 @@ async function bolNewsArticleFetch(href) {
     }
   }
   require('../dunya_news_data/dunya_news_heading_link_fetch').dunyaNewsHeadingFetch(); 
+   
 }
 
 module.exports = { bolNewsArticleFetch, bol_article_arr };

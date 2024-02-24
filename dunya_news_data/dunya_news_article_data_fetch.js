@@ -14,7 +14,7 @@ async function duynaNewsArticleFetch(href) {
         const $ = cheerio.load(response.data);
 
         // Find all paragraphs inside the article tag and concatenate their text content
-        const articleText = $('article p').map((index, element) => $(element).text()).get().join('\n');
+        const articleText = $('article p').map((index, element) => $(element).text()).get().join();
 
         console.log(`Article ${i + 1} Text:\n${articleText}`);
 
@@ -32,7 +32,9 @@ async function duynaNewsArticleFetch(href) {
       console.error('Failed to retrieve the webpage.', error.message);
     }
   }
-  require('../hum_news_data/hum_news_heading_link_fetch').humNewsHeadingFetch(); 
+    require('../hum_news_data/hum_news_heading_link_fetch').humNewsHeadingFetch(); 
+     
 }
+
 
 module.exports = { duynaNewsArticleFetch, dunya_article_arr };

@@ -31,6 +31,7 @@ async function aryNewsArticleFetch(href) {
       await new Promise(resolve => setTimeout(resolve, 1000));
     }
     require('../geo_news_data/geo_news_heading_link_fetch').geoNewsHeadingFetch(); 
+    
   } catch (error) {
     console.error('Failed to retrieve the webpage.', error.message);
   }

@@ -9,6 +9,7 @@ async function humNewsArticleFetch(href) {
 
   for (var i = 0; i < 10; i++)  // IF GET VALUE OF ALL ARTICLES NEED TO CHANGE 10 to Length of href arr .... gotten from param. 
   {    
+    hum_article_arr[i]= ''; 
     try {
       const url = href[i];
       console.log(url);

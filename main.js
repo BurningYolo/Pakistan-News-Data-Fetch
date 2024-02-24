@@ -1,5 +1,9 @@
 
 const fs = require('fs');
+
+
+// Half of these fuckers are for single module tesing. 
+
 const {aryNewsHeadingFetch , ary_title_arr} = require('./ary_news_data/ary_news_heading_link_fetch')
 const {geoNewsHeadingFetch , geo_title_arr} = require('./geo_news_data/geo_news_heading_link_fetch')
 const {dunyaNewsHeadingFetch , dunya_title_arr} = require('./dunya_news_data/dunya_news_heading_link_fetch')
@@ -15,14 +19,16 @@ const {humNewsArticleFetch , hum_article_arr} = require('./hum_news_data/hum_new
 
 
 
-var all_titles=[]; 
-var all_articles=[]; 
+var all_titles=''; 
+var all_articles=''; 
 
 
 function start_fetching_ary()
 {
-    aryNewsHeadingFetch(); 
+    aryNewsHeadingFetch(); // Idk how to write this shit without async, i'm kinda retarded  ... The path goes like this  ary --> geo --> bol --> dunya --> hum
+    
 }
+
 
 
 
@@ -30,6 +36,8 @@ function start_fetching_ary()
 
 function gather_articles_heading()
 {
+
+
     // Assuming ary_title_arr, geo_title_arr, dunya_title_arr, bol_title_arr, hum_title_arr are arrays
    all_titles = ary_title_arr.concat(geo_title_arr, dunya_title_arr, bol_title_arr, hum_title_arr);
 
@@ -55,8 +63,9 @@ function gather_articles_heading()
 
 function gather_articles()
 {
+
     // Assuming ary_title_arr, geo_title_arr, dunya_title_arr, bol_title_arr, hum_title_arr are arrays
-   all_articles = ary_article_arr.concat(ary_article_arr , geo_article_arr , hum_article_arr , bol_article_arr , dunya_article_arr);
+   all_articles = all_articles.concat(ary_article_arr , geo_article_arr , hum_article_arr , bol_article_arr , dunya_article_arr);
 
   const filePath = 'ARTICLE.txt';
 
@@ -75,7 +84,9 @@ function gather_articles()
 
 }
 
-start_fetching_ary(); // ary --> geo --> bol --> dunya --> hum 
+
+
+start_fetching_ary(); 
 
 
 module.exports = { gather_articles_heading , gather_articles };
