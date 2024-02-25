@@ -18,20 +18,11 @@ const {humNewsArticleFetch , hum_article_arr} = require('./hum_news_data/hum_new
 
 
 
-var all_titles=[]; 
-var all_articles=[]; 
-
-
 function start_fetching_ary()
 {
     aryNewsHeadingFetch(); // Idk how to write this shit without async, i'm kinda retarded  ... The path goes like this  ary --> geo --> bol --> dunya --> hum
     
 }
-
-
-
-
-
 
 function gather_data()
 {
@@ -57,31 +48,7 @@ function gather_data()
 
 
 
-//WHY DID I IMPLEMENT THIS IDK 
-// function gather_articles()
-// {
-
-//     // Assuming ary_title_arr, geo_title_arr, dunya_title_arr, bol_title_arr, hum_title_arr are arrays
-//    all_articles = all_articles.concat(ary_article_arr , geo_article_arr , hum_article_arr , bol_article_arr , dunya_article_arr);
-
-//   const filePath = 'ARTICLE.txt';
-
-//   // Create a string with each title on a separate line
-//   const StringG = all_articles.join('\n\n');
-
-//   // Write the string to a text file
-//   fs.writeFile(filePath, StringG, 'utf-8', (err) => {
-//     if (err) {
-//       console.error('Error writing to file:', err);
-//     } else {
-//       console.log('Titles have been written to', filePath);
-//     }
-//   });
-
-
-
-
-
+//START DATA FETCHING . 
 start_fetching_ary(); 
 
 

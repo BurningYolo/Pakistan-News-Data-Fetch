@@ -49,7 +49,7 @@ async function humNewsArticleFetch(href) {
     }
 
   }
-  require('../main').gather_data(); 
+  require('../start_data_fetch').gather_data(); 
   
   
 }
