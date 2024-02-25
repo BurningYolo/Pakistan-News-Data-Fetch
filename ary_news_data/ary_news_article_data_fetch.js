@@ -5,7 +5,7 @@ var ary_article_arr = []; // ARY ARTICLE STORER
 
 async function aryNewsArticleFetch(href) {
   try {
-    for (var i = 0; i < 10; i++) {    
+    for (var i = 0; i <= href.length - 3  ; i++) {    
       ary_article_arr[i] = ''; // Initialize as an empty string for each article
       
       const url = href[i];
@@ -15,13 +15,13 @@ async function aryNewsArticleFetch(href) {
       if (response.status === 200) {
         const $ = cheerio.load(response.data);
 
-        const paragraphs = $('.tdb-block-inner p').filter(function () {
+        const paragraphs = $('.td-post-content p').filter(function () {
           return $(this).text().trim().length > 0;
         });
 
         paragraphs.each((index, element) => {
           const paragraphText = $(element).text();
-          const cleanedText = paragraphText.replace(/\s+/g, ' ').trim().removeLineSpacing(cleanedText);
+          const cleanedText = removeLineSpacing(paragraphText);
           const artilce_with_spaces_removed = removeLineSpacing(cleanedText); 
           ary_article_arr[i] += artilce_with_spaces_removed;
         });

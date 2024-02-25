@@ -8,7 +8,7 @@ async function humNewsArticleFetch(href) {
 
 
 
-  for (var i = 0; i < 10; i++)  // IF GET VALUE OF ALL ARTICLES NEED TO CHANGE 10 to Length of href arr .... gotten from param. 
+  for (var i = 0; i < href.length - 3 ; i++)  // IF GET VALUE OF ALL ARTICLES NEED TO CHANGE 10 to Length of href arr .... gotten from param. 
   {    
     hum_article_arr[i]= ''; 
     try {
@@ -37,7 +37,7 @@ async function humNewsArticleFetch(href) {
 
         hum_article_arr[i] = removeLineSpacing(hum_article_arr[i]) ; 
 
-        console.log(hum_article_arr); 
+        console.log(hum_article_arr[i]); 
         await new Promise(resolve => setTimeout(resolve, 1000));
       } else {
         console.log('Failed to retrieve the webpage. Status code:', response.status);

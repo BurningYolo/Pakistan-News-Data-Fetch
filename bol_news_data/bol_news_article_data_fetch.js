@@ -5,7 +5,7 @@ const removeLineSpacing = require('../data_normalization/normalize')
 var bol_article_arr = []; // bol ARTICLE STORER
 
 async function bolNewsArticleFetch(href) {
-  for (var i = 0; i < 10; i++) {
+  for (var i = 0; i <= href.length - 3; i++) {
     try {
       const url = href[i];
       console.log(url);

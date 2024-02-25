@@ -23,9 +23,14 @@ async function bolNewsHeadingFetch() {
     
         console.log(`Title ${index + 1}: ${textContent}`);
         console.log(`  Href ${index + 1}: ${href}`);
-    
+
+     
+        
         bol_href_arr[index] = cleanted_href_content;
         bol_title_arr[index] = cleaned_text_content;  // Trim to remove extra whitespace
+        
+    
+ 
     });
     
     

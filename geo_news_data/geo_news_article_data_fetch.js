@@ -8,7 +8,7 @@ async function geoNewsArticleFetch(href) {
 
 
 
-  for (var i = 0; i < 10; i++)  // IF GET VALUE OF ALL ARTICLES NEED TO CHANGE 10 to Length of href arr .... gotten from param. 
+  for (var i = 0; i < href.length - 3; i++)  // IF GET VALUE OF ALL ARTICLES NEED TO CHANGE 10 to Length of href arr .... gotten from param. 
   {
     geo_article_arr[i] = ' '    
     try {
