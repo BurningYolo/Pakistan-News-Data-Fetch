@@ -1,5 +1,6 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
+const removeLineSpacing = require('../data_normalization/normalize')
 var ary_article_arr = []; // ARY ARTICLE STORER  
 
 async function aryNewsArticleFetch(href) {
@@ -20,7 +21,9 @@ async function aryNewsArticleFetch(href) {
 
         paragraphs.each((index, element) => {
           const paragraphText = $(element).text();
-          ary_article_arr[i] += paragraphText;
+          const cleanedText = paragraphText.replace(/\s+/g, ' ').trim().removeLineSpacing(cleanedText);
+          const artilce_with_spaces_removed = removeLineSpacing(cleanedText); 
+          ary_article_arr[i] += artilce_with_spaces_removed;
         });
 
         console.log(ary_article_arr[i]);
@@ -36,5 +39,6 @@ async function aryNewsArticleFetch(href) {
     console.error('Failed to retrieve the webpage.', error.message);
   }
 }
+
 
 module.exports = { aryNewsArticleFetch, ary_article_arr };

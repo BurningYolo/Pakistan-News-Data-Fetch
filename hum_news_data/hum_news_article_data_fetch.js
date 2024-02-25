@@ -1,6 +1,7 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 var hum_article_arr= []; // hum ARTICLE STORER  
+const removeLineSpacing = require('../data_normalization/normalize')
 
 async function humNewsArticleFetch(href) {
 
@@ -30,8 +31,11 @@ async function humNewsArticleFetch(href) {
 
         paragraphs.each((index, element) => {
           const paragraphText = $(element).text();
-          hum_article_arr[i] += paragraphText; 
+          const cleaned_paragraph_text = removeLineSpacing(paragraphText); 
+          hum_article_arr[i] += cleaned_paragraph_text; 
         });
+
+        hum_article_arr[i] = removeLineSpacing(hum_article_arr[i]) ; 
 
         console.log(hum_article_arr); 
         await new Promise(resolve => setTimeout(resolve, 1000));
@@ -45,7 +49,7 @@ async function humNewsArticleFetch(href) {
     }
 
   }
-  require('../main').gather_articles_heading(); 
+  require('../main').gather_data(); 
   
   
 }

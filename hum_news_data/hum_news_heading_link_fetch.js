@@ -1,5 +1,6 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
+const removeLineSpacing = require('../data_normalization/normalize')
 
 var hum_href_arr=[] ; 
 var hum_title_arr=[]; 
@@ -21,8 +22,11 @@ async function humNewsHeadingFetch() {
         console.log(`Title ${index + 1}: ${title}`);
         console.log(`  Href ${index + 1}: ${href}`);
 
-       hum_href_arr[index] = href; 
-        hum_title_arr[index] = title; //ARY TITLE STORER 
+        const cleaned_title_content = removeLineSpacing(title); 
+        const cleaned_href_content = removeLineSpacing(href); 
+
+        hum_href_arr[index] = cleaned_href_content; 
+        hum_title_arr[index] =cleaned_title_content ; //ARY TITLE STORER 
       });
     } else {
       console.log('Failed to retrieve the webpage. Status code:', response.status);
@@ -41,4 +45,4 @@ async function humNewsHeadingFetch() {
   }
 }
 
-module.exports = { humNewsHeadingFetch , hum_title_arr} ;
+module.exports = { humNewsHeadingFetch , hum_title_arr, hum_href_arr} ;

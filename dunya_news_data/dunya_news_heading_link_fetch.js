@@ -1,5 +1,6 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
+const removeLineSpacing = require('../data_normalization/normalize')
 
 var dunya_href_arr = [];
 var dunya_title_arr = [];
@@ -17,14 +18,18 @@ async function dunyaNewsHeadingFetch() {
         const dataArticleName = $(element).text().trim(); // Use .text() to get the text content
         var href = $(element).attr('href');
 
+
         console.log(`data-article_name ${index + 1}: ${dataArticleName}`);
        
 
         href=href.replace('/index.php/', 'https://dunyanews.tv/');
         console.log(`  Href ${index + 1}: ${href}`);
 
-        dunya_href_arr[index] = href;
-        dunya_title_arr[index] = dataArticleName.trim();
+        const cleaned_article_text = removeLineSpacing(dataArticleName); 
+        const cleaned_href_content = removeLineSpacing(href); 
+
+        dunya_href_arr[index] = cleaned_href_content;
+        dunya_title_arr[index] = cleaned_article_text; 
       });
     } else {
       console.log('Failed to retrieve the webpage. Status code:', response.status);
@@ -41,4 +46,4 @@ async function dunyaNewsHeadingFetch() {
   }
 }
 
-module.exports = {  dunyaNewsHeadingFetch, dunya_title_arr };
+module.exports = {  dunyaNewsHeadingFetch, dunya_title_arr, dunya_href_arr };

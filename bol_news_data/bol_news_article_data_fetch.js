@@ -1,5 +1,6 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
+const removeLineSpacing = require('../data_normalization/normalize')
 
 var bol_article_arr = []; // bol ARTICLE STORER
 
@@ -14,12 +15,20 @@ async function bolNewsArticleFetch(href) {
         const $ = cheerio.load(response.data);
 
         // Find all paragraphs inside the article tag and concatenate their text content
-        const articleText = $('.typo-txt p').map((index, element) => $(element).text()).get().join();
+        const articleText = $('.typo-txt p')
+        .map((index, element) => $(element).text().replace(/\s+/g, ' ').trim())
+        .get()
+        .join('\n');
+
+
+        const cleaned_article_text = removeLineSpacing(articleText); 
+
+
 
         console.log(`Article ${i + 1} Text:\n${articleText}`);
 
         // Store the article text in the array
-        bol_article_arr[i] = articleText;
+        bol_article_arr[i] = cleaned_article_text;
       } else {
         console.log('Failed to retrieve the webpage. Status code:', response.status);
       }
@@ -35,5 +44,7 @@ async function bolNewsArticleFetch(href) {
   require('../dunya_news_data/dunya_news_heading_link_fetch').dunyaNewsHeadingFetch(); 
    
 }
+
+
 
 module.exports = { bolNewsArticleFetch, bol_article_arr };

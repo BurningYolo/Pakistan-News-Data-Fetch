@@ -1,5 +1,6 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
+const removeLineSpacing = require('../data_normalization/normalize')
 var bol_href_arr=[] ; 
 var bol_title_arr=[]; 
 async function bolNewsHeadingFetch() {
@@ -14,14 +15,17 @@ async function bolNewsHeadingFetch() {
       $('li.border-bottom-dashed a').each((index, element) => {
         const $element = $(element);
     
-        const textContent = $element.text(); // Extracting text content from the <a> element and its descendants
-        const href = $element.attr('href'); // Extracting href from the <a> element
+        const textContent = $element.text().replace(/\s+/g, ' ').trim(); // Remove line breaks and extra spaces
+        const href = $element.attr('href');
+
+        const cleaned_text_content = removeLineSpacing(textContent); 
+        const cleanted_href_content= removeLineSpacing(href); 
     
         console.log(`Title ${index + 1}: ${textContent}`);
         console.log(`  Href ${index + 1}: ${href}`);
     
-        bol_href_arr[index] = href;
-        bol_title_arr[index] = textContent.trim(); // Trim to remove extra whitespace
+        bol_href_arr[index] = cleanted_href_content;
+        bol_title_arr[index] = cleaned_text_content;  // Trim to remove extra whitespace
     });
     
     
@@ -43,4 +47,5 @@ async function bolNewsHeadingFetch() {
   }
 }
 
-module.exports = { bolNewsHeadingFetch , bol_title_arr} ;
+
+module.exports = { bolNewsHeadingFetch , bol_title_arr, bol_href_arr} ;

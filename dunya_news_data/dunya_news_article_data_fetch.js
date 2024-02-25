@@ -1,5 +1,6 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
+const removeLineSpacing = require('../data_normalization/normalize')
 
 var dunya_article_arr = []; // DUNYA ARTICLE STORER
 
@@ -16,10 +17,12 @@ async function duynaNewsArticleFetch(href) {
         // Find all paragraphs inside the article tag and concatenate their text content
         const articleText = $('article p').map((index, element) => $(element).text()).get().join();
 
+        const cleaned_article_text = removeLineSpacing(articleText); 
+
         console.log(`Article ${i + 1} Text:\n${articleText}`);
 
         // Store the article text in the array
-        dunya_article_arr[i] = articleText;
+        dunya_article_arr[i] = cleaned_article_text;
       } else {
         console.log('Failed to retrieve the webpage. Status code:', response.status);
       }

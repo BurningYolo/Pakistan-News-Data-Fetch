@@ -1,5 +1,6 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
+const removeLineSpacing = require('../data_normalization/normalize')
 var geo_article_arr= []; // ARY ARTICLE STORER  
 
 async function geoNewsArticleFetch(href) {
@@ -24,16 +25,18 @@ async function geoNewsArticleFetch(href) {
         const paragraphs = $('.content-area p').filter(function () {
           return $(this).text().trim().length > 0;
         });
-       
-        // Extract and print the text content of selected <p> tags
-
-
+        
         paragraphs.each((index, element) => {
-          const paragraphText = $(element).text();
-          geo_article_arr[i] += paragraphText; 
+          const paragraphText = $(element).text().replace(/\s+/g, ' ').trim(); // Remove line breaks and extra spaces
+          const cleaned_text_content = removeLineSpacing(paragraphText); 
+          geo_article_arr[i] += cleaned_text_content;
         });
 
-        console.log(geo_article_arr); 
+        geo_article_arr[i] = removeLineSpacing(geo_article_arr[i]); 
+
+
+        
+        console.log(geo_article_arr[i]);
       } else {
         console.log('Failed to retrieve the webpage. Status code:', response.status);
       }
@@ -44,6 +47,11 @@ async function geoNewsArticleFetch(href) {
     }
   }
     require('../bol_news_data/bol_news_heading_link_fetch').bolNewsHeadingFetch(); 
+}
+
+function removeLineSpacing_commas(text) {
+  // Replace line breaks with an empty string
+  return text.replace(/[\r\n,]/g, ' ');
 }
 
 module.exports = { geoNewsArticleFetch , geo_article_arr };
