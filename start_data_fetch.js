@@ -2,7 +2,7 @@
 const fs = require('fs');
 
 
-// Half of these fuckers are for single module tesing. 
+// Half of these imports  are for single module tesing. idk ....  
 
 const {aryNewsHeadingFetch , ary_title_arr , ary_href_arr} = require('./ary_news_data/ary_news_heading_link_fetch')
 const {geoNewsHeadingFetch , geo_title_arr, geo_href_arr} = require('./geo_news_data/geo_news_heading_link_fetch')
@@ -20,9 +20,12 @@ const {humNewsArticleFetch , hum_article_arr} = require('./hum_news_data/hum_new
 
 function start_fetching_ary()
 {
-    aryNewsHeadingFetch(); // Idk how to write this shit without async, i'm kinda retarded  ... The path goes like this  ary --> geo --> bol --> dunya --> hum
+    aryNewsHeadingFetch(); // Idk how to write this stuff better i'm kinda retarded for now it's running  ... The path goes like this  ary --> geo --> bol --> dunya --> hum
     
 }
+
+
+//writing file output to csv . 
 
 function gather_data()
 {
@@ -38,7 +41,7 @@ function gather_data()
     const csvContent = combinedData.map(row => row.join(',')).join('\n');
 
 // Write to a file
-    fs.writeFile('data.csv', csvContent, (err) => {
+    fs.writeFile('data.csv', csvContent, (err) => {   // final output csv = data.csv shouldn't hardcode but fornow it will work, and also need to append it rather than overwriting. .... 
     if (err) throw err;
     console.log('CSV file has been saved!');
  
